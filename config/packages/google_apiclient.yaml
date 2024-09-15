@@ -1,0 +1,5 @@
+services:
+    Google\Client:
+        class: Google\Client
+        calls:
+            - [setDeveloperKey, ['%env(GOOGLE_API_KEY)%']]
