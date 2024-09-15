@@ -11,7 +11,7 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
-            $dbname: 'querier_db'
+            $path: 'querier_db'
 
 
     # makes classes in src/ available to be used as services

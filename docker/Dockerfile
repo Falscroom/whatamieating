@@ -10,13 +10,16 @@ RUN apt-get update && apt-get install -y \
     unzip \
     wget \
     libicu-dev \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl \
+    libpq-dev \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl pdo_pgsql \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug opcache \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && wget https://get.symfony.com/cli/installer -O - | bash \
     && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
+
+RUN mkdir /var/www/downloads
 
 COPY ./docker/php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY ./docker/php/docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
