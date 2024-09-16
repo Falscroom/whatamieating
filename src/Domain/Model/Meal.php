@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Model;
 
-use App\Domain\Enum\MealType;
-use App\Domain\ValueObject\Date;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -19,12 +19,9 @@ final class Meal
     public function __construct(
         #[ORM\Column]
         private string $title,
-        #[ORM\Column]
-        private User $user,
-        #[ORM\Column]
-        private Date $date,
-        #[ORM\Column]
-        private MealType $type,
+
+        #[ORM\OneToMany(targetEntity: MealChoice::class, mappedBy: 'meal')]
+        private Collection $mealChoices = new ArrayCollection()
     ) {}
 
     public function getTitle(): string
@@ -32,18 +29,8 @@ final class Meal
         return $this->title;
     }
 
-    public function getUser(): User
+    public function getMealChoices(): Collection
     {
-        return $this->user;
-    }
-
-    public function getDate(): Date
-    {
-        return $this->date;
-    }
-
-    public function getType(): MealType
-    {
-        return $this->type;
+        return $this->mealChoices;
     }
 }
