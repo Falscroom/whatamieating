@@ -45,6 +45,64 @@ class SeedDatabaseCommand extends Command
             $user2 = new User('Jane Smith');
             $user3 = new User('Alice Johnson');
 
+            // Seed Meals
+            $meal1 = new Meal('Pasta');
+            $meal2 = new Meal('Salad');
+            $meal3 = new Meal('Burger');
+            $meal4 = new Meal('Sushi');
+            $meal5 = new Meal('Pizza');
+            $this->entityManager->persist($meal1);
+            $this->entityManager->persist($meal2);
+            $this->entityManager->persist($meal3);
+            $this->entityManager->persist($meal4);
+            $this->entityManager->persist($meal5);
+
+            // Seed Meal Additions
+            $addition1 = new MealAddition('Extra Cheese');
+            $addition2 = new MealAddition('Spicy Sauce');
+            $addition3 = new MealAddition('Bacon');
+            $addition4 = new MealAddition('Avocado');
+            $addition5 = new MealAddition('Garlic Bread');
+            $this->entityManager->persist($addition1);
+            $this->entityManager->persist($addition2);
+            $this->entityManager->persist($addition3);
+            $this->entityManager->persist($addition4);
+            $this->entityManager->persist($addition5);
+
+            // Use the `chooseMeal` method to assign meals to users
+            $user1->chooseMeal(
+                $meal1,
+                new ArrayCollection([$addition1, $addition2]),
+                Date::fromDateTime(new DateTimeImmutable()),
+                MealType::BREAKFAST
+            );
+            $user1->chooseMeal(
+                $meal4,
+                new ArrayCollection([$addition3, $addition4]),
+                Date::fromDateTime(new DateTimeImmutable()),
+                MealType::LUNCH
+            );
+
+            $user2->chooseMeal(
+                $meal2,
+                new ArrayCollection([$addition2, $addition5]),
+                Date::fromDateTime(new DateTimeImmutable()),
+                MealType::LUNCH
+            );
+            $user2->chooseMeal(
+                $meal5,
+                new ArrayCollection([$addition1, $addition3]),
+                Date::fromDateTime(new DateTimeImmutable()),
+                MealType::BREAKFAST
+            );
+
+            $user3->chooseMeal(
+                $meal3,
+                new ArrayCollection([$addition4, $addition5]),
+                Date::fromDateTime(new DateTimeImmutable()),
+                MealType::BREAKFAST
+            );
+
             // Persist Users
             $this->entityManager->persist($user1);
             $this->entityManager->persist($user2);
