@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Model;
+namespace App\Domain\Entity\MealPlanning;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

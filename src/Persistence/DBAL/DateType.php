@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Persistence\DBAL;
 
-use App\Domain\ValueObject\Date;
+use App\Domain\Shared\ValueObject\Date;
 use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DateTimeImmutableType;

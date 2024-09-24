@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\ValueObject;
+namespace App\Domain\Shared\ValueObject;
 
 use DateTimeImmutable;
+use DateTimeInterface;
 use InvalidArgumentException;
 use Stringable;
 
@@ -12,12 +13,12 @@ final class Date implements Stringable
 {
     private DateTimeImmutable $date;
 
-    private function __construct(DateTimeImmutable $date)
+    private function __construct(DateTimeInterface $date)
     {
-        $this->date = $date->setTime(0, 0);
+        $this->date = (clone $date)->setTime(0, 0);
     }
 
-    public static function fromDateTime(DateTimeImmutable $dateTime): self
+    public static function fromDateTime(DateTimeInterface $dateTime): self
     {
         return new self($dateTime);
     }

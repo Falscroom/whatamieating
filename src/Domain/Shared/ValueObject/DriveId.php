@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\ValueObject;
+namespace App\Domain\Shared\ValueObject;
+
+use InvalidArgumentException;
 
 final readonly class DriveId implements \Stringable
 {
@@ -10,7 +12,11 @@ final readonly class DriveId implements \Stringable
 
     public static function fromUrl(string $url): DriveId
     {
-        return new self();
+        if (preg_match('/\/d\/([a-zA-Z0-9-_]+)\//', $url, $matches)) {
+            return new self($matches[1]);
+        }
+
+        throw new InvalidArgumentException('Invalid url');
     }
 
     public function __toString(): string

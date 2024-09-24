@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Presentation\Controller;
 
-use App\Domain\Service\DriveDownloader;
-use App\Domain\Service\ExcelParser;
-use App\Domain\Service\MealService;
-use App\Domain\ValueObject\DriveId;
+use App\Application\Service\DriveDownloader;
+use App\Application\Service\ExcelParser;
+use App\Application\Service\MealService;
+use App\Domain\Shared\ValueObject\DriveId;
 use App\Presentation\Dto\UrlDto;
 use Google\Service\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

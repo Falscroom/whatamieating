@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Service;
+namespace App\Application\Service;
 
-use App\Domain\ValueObject\DriveId;
+use App\Domain\Shared\ValueObject\DriveId;
 use Google\Client;
 use Google\Service\Drive;
 use Google\Service\Exception;

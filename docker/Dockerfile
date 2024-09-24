@@ -22,8 +22,9 @@ RUN apt-get update && apt-get install -y \
     && wget https://get.symfony.com/cli/installer -O - | bash \
     && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
-# Создаем директорию для загрузок
-RUN mkdir /var/www/downloads
+RUN mkdir -p /var/www/downloads \
+    && chown -R www-data:www-data /var/www/downloads \
+    && ls -la /var/www
 
 # Копируем конфигурационные файлы
 COPY ./docker/php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
