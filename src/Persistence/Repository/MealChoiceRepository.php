@@ -7,6 +7,7 @@ namespace App\Persistence\Repository;
 use App\Domain\Entity\MealPlanning\MealChoice;
 use App\Domain\Shared\ValueObject\Date;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<MealChoice>
@@ -18,6 +19,12 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 final class MealChoiceRepository extends ServiceEntityRepository
 {
+    public function __construct(
+        private readonly ManagerRegistry $registry,
+    ) {
+        parent::__construct($this->registry, MealChoice::class);
+    }
+
     /** @return MealChoice[] */
     public function getMealChoices(int $userId, Date $date): array
     {

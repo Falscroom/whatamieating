@@ -15,7 +15,7 @@ final class MappedArray
         $data = [];
         foreach ($objects as $object) {
             self::valid($object, $keyMethodName);
-            $data[(string) $object->{$keyMethodName}()->value] = $object;
+            $data[(string) $object->{$keyMethodName}()->value][] = $object;
         }
 
         return new self($data);

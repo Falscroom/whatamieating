@@ -9,4 +9,10 @@ enum MealType: string
     case BREAKFAST = 'breakfast';
 
     case LUNCH = 'lunch';
+
+    /** @return string[] */
+    public static function order(): array
+    {
+        return [self::BREAKFAST->value, self::LUNCH->value];
+    }
 }

@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-final class MealChoice
+class MealChoice
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -44,6 +44,13 @@ final class MealChoice
         $this->additions->add($addition);
 
         return $this;
+    }
+
+    public function getTitleWithAdditions(): string
+    {
+        $additions = $this->additions->map(fn (MealAddition $addition) => $addition->getTitle());
+
+        return $this->meal->getTitle() . ' (' . implode(', ', $additions->toArray()) . ')';
     }
 
     public function getUser(): User

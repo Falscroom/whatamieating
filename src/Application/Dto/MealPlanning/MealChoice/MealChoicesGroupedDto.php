@@ -16,7 +16,7 @@ final class MealChoicesGroupedDto
     {
         return [
             'type' => $this->type,
-            'choices' => array_map(fn (MealChoice $choice) => $choice->toArray(), $this->choices),
+            'choices' => array_map(fn (MealChoiceDto $choice) => $choice->toArray(), $this->choices),
         ];
     }
 }

@@ -7,7 +7,7 @@ namespace App\Domain\Entity\MealPlanning;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-final class MealAddition
+class MealAddition
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

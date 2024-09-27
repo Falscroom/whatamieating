@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_user')]
-final class User extends AggregateRoot implements UserInterface
+class User extends AggregateRoot implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
