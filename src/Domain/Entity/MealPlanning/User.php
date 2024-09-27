@@ -10,10 +10,11 @@ use App\Domain\Shared\ValueObject\Date;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_user')]
-final class User extends AggregateRoot
+final class User extends AggregateRoot implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,11 +29,18 @@ final class User extends AggregateRoot
         private Collection $mealChoices = new ArrayCollection()
     ) {}
 
-    public function chooseMeal(Meal $meal, Collection $additions, Date $date, MealType $type): void
+    public function chooseMeal(Meal $meal, Date $date, MealType $type): MealChoice
     {
-        $mealChoice = new MealChoice($this, $meal, $additions, $date, $type);
+        $mealChoice = new MealChoice($this, $meal, $date, $type);
 
         $this->mealChoices->add($mealChoice);
+
+        return $mealChoice;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getFullName(): string
@@ -43,5 +51,20 @@ final class User extends AggregateRoot
     public function getMealChoices(): Collection
     {
         return $this->mealChoices;
+    }
+
+    public function getRoles(): array
+    {
+        // TODO: Implement getRoles() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->id;
     }
 }

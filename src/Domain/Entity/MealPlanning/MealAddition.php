@@ -16,7 +16,7 @@ final class MealAddition
 
     public function __construct(
         #[ORM\Column]
-        private string $name
+        private string $title
     ) {}
 
     public function getId(): int
@@ -24,8 +24,8 @@ final class MealAddition
         return $this->id;
     }
 
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 }

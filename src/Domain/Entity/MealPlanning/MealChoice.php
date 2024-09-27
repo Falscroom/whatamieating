@@ -6,6 +6,7 @@ namespace App\Domain\Entity\MealPlanning;
 
 use App\Domain\Enum\MealType;
 use App\Domain\Shared\ValueObject\Date;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,17 +27,24 @@ final class MealChoice
         #[ORM\JoinColumn(nullable: false)]
         private Meal $meal,
 
-        /** @var Collection<int, MealAddition> */
-        #[ORM\ManyToMany(targetEntity: MealAddition::class)]
-        #[ORM\JoinTable(name: 'meal_choice_additions')]
-        private Collection $additions,
-
         #[ORM\Column(type: 'date')]
         private Date $date,
 
         #[ORM\Column(type: 'string', enumType: MealType::class)]
-        private MealType $mealType
+        private MealType $mealType,
+
+        /** @var Collection<int, MealAddition> */
+        #[ORM\ManyToMany(targetEntity: MealAddition::class)]
+        #[ORM\JoinTable(name: 'meal_choice_additions')]
+        private Collection $additions = new ArrayCollection(),
     ) {}
+
+    public function addAddition(MealAddition $addition): self
+    {
+        $this->additions->add($addition);
+
+        return $this;
+    }
 
     public function getUser(): User
     {

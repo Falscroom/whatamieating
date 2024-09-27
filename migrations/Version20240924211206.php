@@ -24,7 +24,7 @@ final class Version20240924211206 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE app_user_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE app_user (id INT NOT NULL, full_name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE meal (id INT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE TABLE meal_addition (id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE meal_addition (id INT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE meal_choice (id INT NOT NULL, user_id INT NOT NULL, meal_id INT NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, meal_type VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_AEA1E79BA76ED395 ON meal_choice (user_id)');
         $this->addSql('CREATE INDEX IDX_AEA1E79B639666D6 ON meal_choice (meal_id)');

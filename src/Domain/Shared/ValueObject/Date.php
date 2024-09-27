@@ -18,6 +18,11 @@ final class Date implements Stringable
         $this->date = (clone $date)->setTime(0, 0);
     }
 
+    public static function today(): self
+    {
+        return new self(new DateTimeImmutable());
+    }
+
     public static function fromDateTime(DateTimeInterface $dateTime): self
     {
         return new self($dateTime);

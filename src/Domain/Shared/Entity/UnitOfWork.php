@@ -6,5 +6,17 @@ namespace App\Domain\Shared\Entity;
 
 final class UnitOfWork
 {
-    //todo when needed
+    public function commit(AggregateRoot $root): void
+    {
+        //todo persist
+    }
+
+    public function save(AggregateRoot $root): void
+    {
+        //TODO save entity to db
+
+        //TODO outbox?
+
+        //TODO dispatch domain events
+    }
 }

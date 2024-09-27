@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/api')]
+#[Route('/api/parser')]
 class ExcelParserController extends AbstractController
 {
     public function __construct(
@@ -26,7 +26,7 @@ class ExcelParserController extends AbstractController
     ) {}
 
     /** @throws Exception */
-    #[Route('/', methods: ['POST'])]
+    #[Route(methods: ['POST'])]
     public function parse(#[MapRequestPayload] UrlDto $dto): JsonResponse
     {
         $path = $this->downloader->download(DriveId::fromUrl($dto->url));
