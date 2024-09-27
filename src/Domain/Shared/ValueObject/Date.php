@@ -44,11 +44,6 @@ final class Date implements Stringable
         return $this->date;
     }
 
-    public function equals(self $other): bool
-    {
-        return $this->date === $other->date;
-    }
-
     public function __toString(): string
     {
         return $this->date->format('Y-m-d');
