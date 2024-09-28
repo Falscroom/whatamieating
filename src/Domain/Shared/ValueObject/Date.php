@@ -7,7 +7,6 @@ namespace App\Domain\Shared\ValueObject;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
-use InvalidArgumentException;
 use Stringable;
 
 final class Date implements Stringable
@@ -32,17 +31,6 @@ final class Date implements Stringable
     public static function fromTimestamp(int $timestamp): self
     {
         return new self((new DateTime())->setTimestamp($timestamp));
-    }
-
-    public static function fromString(string $dateString): self
-    {
-        $date = DateTimeImmutable::createFromFormat('Y-m-d', $dateString);
-
-        if ($date === false) {
-            throw new InvalidArgumentException("Invalid date format: $dateString");
-        }
-
-        return new self($date);
     }
 
     public function toDateTime(): DateTimeInterface
