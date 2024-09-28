@@ -11,7 +11,6 @@ use App\Domain\Entity\MealPlanning\MealChoice;
 use App\Domain\Entity\MealPlanning\User;
 use App\Domain\Enum\MealType;
 use App\Domain\Shared\Entity\GroupedArray;
-use App\Domain\Shared\Entity\MappedArray;
 use App\Domain\Shared\ValueObject\Date;
 use App\Persistence\Repository\MealChoiceRepository;
 

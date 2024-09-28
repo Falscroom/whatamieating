@@ -6,6 +6,7 @@ namespace App\Domain\Shared\Entity;
 
 final class UnitOfWork
 {
+    //TODO no events for now :(
     public function commit(AggregateRoot $root): void
     {
         //todo persist
