@@ -37,7 +37,7 @@ final class DateType extends DateTimeImmutableType
         }
 
         if ($value instanceof Date) {
-            return $value->toDateTimeImmutable()->format($platform->getDateTimeFormatString());
+            return $value->toDateTime()->format($platform->getDateTimeFormatString());
         }
 
         throw new InvalidArgumentException('Invalid PHP value for DateType');

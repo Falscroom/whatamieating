@@ -20,7 +20,7 @@ class Meal
         #[ORM\Column]
         private string $title,
 
-        #[ORM\OneToMany(targetEntity: MealAddition::class, mappedBy: 'meal')]
+        #[ORM\OneToMany(targetEntity: MealAddition::class, mappedBy: 'meal', cascade: ['persist', 'remove'])]
         private Collection $additions = new ArrayCollection(),
 
         #[ORM\OneToMany(targetEntity: MealChoice::class, mappedBy: 'meal')]

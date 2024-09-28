@@ -23,7 +23,7 @@ class MealChoice
         #[ORM\JoinColumn(nullable: false)]
         private User $user,
 
-        #[ORM\ManyToOne(targetEntity: Meal::class, inversedBy: 'mealChoices')]
+        #[ORM\ManyToOne(targetEntity: Meal::class, cascade: ['persist'], inversedBy: 'mealChoices')]
         #[ORM\JoinColumn(nullable: false)]
         private Meal $meal,
 
@@ -34,7 +34,7 @@ class MealChoice
         private MealType $mealType,
 
         /** @var Collection<int, MealAddition> */
-        #[ORM\ManyToMany(targetEntity: MealAddition::class)]
+        #[ORM\ManyToMany(targetEntity: MealAddition::class, cascade: ['persist'])]
         #[ORM\JoinTable(name: 'meal_choice_additions')]
         private Collection $additions = new ArrayCollection(),
     ) {}

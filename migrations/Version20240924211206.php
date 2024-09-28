@@ -20,7 +20,6 @@ final class Version20240924211206 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP SEQUENCE user_id_seq CASCADE');
         $this->addSql('CREATE SEQUENCE app_user_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE app_user (id INT NOT NULL, full_name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE meal (id INT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id))');

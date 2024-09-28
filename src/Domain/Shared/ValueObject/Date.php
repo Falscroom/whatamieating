@@ -45,7 +45,7 @@ final class Date implements Stringable
         return new self($date);
     }
 
-    public function toDateTimeImmutable(): DateTimeImmutable
+    public function toDateTime(): DateTimeInterface
     {
         return $this->date;
     }
