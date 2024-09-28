@@ -18,13 +18,24 @@ RUN apt-get update && apt-get install -y \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug opcache \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && wget https://get.symfony.com/cli/installer -O - | bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest \
+    && npm install -g yarn \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Symfony CLI
+RUN wget https://get.symfony.com/cli/installer -O - | bash \
     && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
-RUN mkdir -p /var/www/downloads \
-    && chown -R www-data:www-data /var/www/downloads \
-    && ls -la /var/www
+# Создаем директории и настраиваем права
+#RUN mkdir -p /var/www/downloads \
+#    && chown -R www-data:www-data /var/www/downloads \
+#    && ls -la /var/www
 
 # Копируем конфигурационные файлы
 COPY ./docker/php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

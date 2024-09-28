@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Message Test</title>
+    {{ encore_entry_link_tags('app') }} {# Includes compiled CSS #}
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+    window.mealsData = {{ mealsData|raw }};
+</script>
+
+{{ encore_entry_script_tags('app') }} {# Includes compiled JS #}
+</body>
+</html>

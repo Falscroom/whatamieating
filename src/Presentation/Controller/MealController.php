@@ -8,7 +8,7 @@ use App\Application\Service\MealService;
 use App\Domain\Entity\MealPlanning\User;
 use App\Domain\Shared\ValueObject\Date;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/meal')]
@@ -17,11 +17,13 @@ final class MealController extends AbstractController
     public function __construct(private readonly MealService $mealService) {}
 
     #[Route('/whatAmIEating', methods: ['GET'])]
-    public function whatAmIEating(): JsonResponse
+    public function whatAmIEating(): Response
     {
-        $user = new User('');
+        $user = new User('Ivan Ivanov');
         $mealChoices = $this->mealService->getMealChoices($user, Date::today());
 
-        return new JsonResponse($mealChoices->toArray());
+        return $this->render('vue/index.html.twig', [
+            'mealsData' => json_encode($mealChoices->toArray()),
+        ]);
     }
 }

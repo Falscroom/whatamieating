@@ -30,9 +30,9 @@ final readonly class MealService
                 $mappedByType->getSubArray($mealType)
             );
 
-            $sortedMealChoicesDto[] = new MealChoicesGroupedDto(MealType::from($mealType), $dtos);
+            $sortedMealChoicesDto[] = MealChoicesGroupedDto::create(MealType::from($mealType), $dtos);
         }
 
-        return new MealChoiceListDto($sortedMealChoicesDto);
+        return MealChoiceListDto::create($sortedMealChoicesDto, $date, $user);
     }
 }

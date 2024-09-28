@@ -6,9 +6,9 @@ namespace App\Domain\Enum;
 
 enum MealType: string
 {
-    case BREAKFAST = 'breakfast';
+    case BREAKFAST = 'Breakfast';
 
-    case LUNCH = 'lunch';
+    case LUNCH = 'Lunch';
 
     /** @return string[] */
     public static function order(): array
