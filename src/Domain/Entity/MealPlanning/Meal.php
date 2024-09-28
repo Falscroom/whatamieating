@@ -20,13 +20,28 @@ class Meal
         #[ORM\Column]
         private string $title,
 
+        #[ORM\OneToMany(targetEntity: MealAddition::class, mappedBy: 'meal')]
+        private Collection $additions = new ArrayCollection(),
+
         #[ORM\OneToMany(targetEntity: MealChoice::class, mappedBy: 'meal')]
-        private Collection $mealChoices = new ArrayCollection()
+        private Collection $mealChoices = new ArrayCollection(),
     ) {}
+
+    public function addAddition(MealAddition $addition): self
+    {
+        $this->additions->add($addition);
+
+        return $this;
+    }
 
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function getAdditions(): Collection
+    {
+        return $this->additions;
     }
 
     public function getMealChoices(): Collection

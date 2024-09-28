@@ -29,11 +29,11 @@ class ExcelParserController extends AbstractController
     #[Route(methods: ['POST'])]
     public function parse(#[MapRequestPayload] UrlDto $dto): JsonResponse
     {
-        $path = $this->downloader->download(DriveId::fromUrl($dto->url));
+        //$path = $this->downloader->download(DriveId::fromUrl($dto->url));
 
-        $meals = $this->parser->parse($path);
+        $meals = $this->parser->parse('/var/www/downloads/spreadsheet_1G9hY5HFgGmqjNqCGjOg1TJwPI8Q0_zF9.xlsx');
 
-        $this->mealService->saveMany($meals);
+        //$this->mealService->saveMany($meals);
 
         return new JsonResponse(Response::HTTP_CREATED);
     }

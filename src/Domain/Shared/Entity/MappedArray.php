@@ -10,26 +10,25 @@ final class MappedArray
 {
     private function __construct(private array $data) {}
 
-    public static function objectArrayWithEnums(array $objects, string $keyMethodName): self
+    public static function fromObjectArray(array $objects, callable $keyFn): self
     {
         $data = [];
         foreach ($objects as $object) {
-            self::valid($object, $keyMethodName);
-            $data[(string) $object->{$keyMethodName}()->value][] = $object;
+            $data[$keyFn($object)] = $object;
         }
 
         return new self($data);
     }
 
-    public function getSubArray(string $key): array
+    public function get(int|string $key): ?object
     {
-        return $this->data[$key] ?? [];
+        return $this->data[$key] ?? null;
     }
 
-    private static function valid(object $object, string $keyMethodName): void
+    public function add(int|string $key, mixed $value): self
     {
-        if (!method_exists($object, $keyMethodName)) {
-            throw new InvalidArgumentException(sprintf('Method %s does not exist', $keyMethodName));
-        }
+        $this->data[$key] = $value;
+
+        return $this;
     }
 }

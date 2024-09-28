@@ -10,6 +10,7 @@ use App\Application\Dto\MealPlanning\MealChoice\MealChoicesGroupedDto;
 use App\Domain\Entity\MealPlanning\MealChoice;
 use App\Domain\Entity\MealPlanning\User;
 use App\Domain\Enum\MealType;
+use App\Domain\Shared\Entity\GroupedArray;
 use App\Domain\Shared\Entity\MappedArray;
 use App\Domain\Shared\ValueObject\Date;
 use App\Persistence\Repository\MealChoiceRepository;
@@ -21,7 +22,7 @@ final readonly class MealService
     public function getMealChoices(User $user, Date $date): MealChoiceListDto
     {
         $mealChoices = $this->repository->getMealChoices($user->getId(), $date);
-        $mappedByType = MappedArray::objectArrayWithEnums($mealChoices, 'getMealType');
+        $mappedByType = GroupedArray::fromObjectArray($mealChoices, fn (MealChoice $c) => $c->getMealType()->value);
 
         $sortedMealChoicesDto = [];
         foreach (MealType::order() as $mealType) {

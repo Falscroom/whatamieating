@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Shared\ValueObject;
 
+use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 use InvalidArgumentException;
@@ -11,7 +12,7 @@ use Stringable;
 
 final class Date implements Stringable
 {
-    private DateTimeImmutable $date;
+    private DateTimeInterface $date;
 
     private function __construct(DateTimeInterface $date)
     {
@@ -26,6 +27,11 @@ final class Date implements Stringable
     public static function fromDateTime(DateTimeInterface $dateTime): self
     {
         return new self($dateTime);
+    }
+
+    public static function fromTimestamp(int $timestamp): self
+    {
+        return new self((new DateTime())->setTimestamp($timestamp));
     }
 
     public static function fromString(string $dateString): self

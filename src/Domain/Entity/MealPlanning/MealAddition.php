@@ -16,7 +16,10 @@ class MealAddition
 
     public function __construct(
         #[ORM\Column]
-        private string $title
+        private string $title,
+
+        #[ORM\ManyToOne(targetEntity: Meal::class, inversedBy: 'additions')]
+        private Meal $meal,
     ) {}
 
     public function getId(): int
@@ -27,5 +30,10 @@ class MealAddition
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function getMeal(): Meal
+    {
+        return $this->meal;
     }
 }
