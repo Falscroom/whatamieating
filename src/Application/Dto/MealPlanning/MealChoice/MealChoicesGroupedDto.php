@@ -14,7 +14,7 @@ final class MealChoicesGroupedDto
     /** @param MealChoiceDto[] $choices */
     public static function create(MealType $type, array $choices): self
     {
-        return new self($type->value, $choices);
+        return new self($type->translate(), $choices);
     }
 
     public function toArray(): array
