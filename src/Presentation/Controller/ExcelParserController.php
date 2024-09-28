@@ -6,7 +6,6 @@ namespace App\Presentation\Controller;
 
 use App\Application\Service\DriveDownloader;
 use App\Application\Service\ExcelParser;
-use App\Application\Service\MealService;
 use App\Domain\Shared\ValueObject\DriveId;
 use App\Presentation\Dto\UrlDto;
 use Google\Service\Exception;
@@ -22,18 +21,17 @@ class ExcelParserController extends AbstractController
     public function __construct(
         private readonly DriveDownloader $downloader,
         private readonly ExcelParser $parser,
-        private readonly MealService $mealService,
     ) {}
 
     /** @throws Exception */
     #[Route(methods: ['POST'])]
     public function parse(#[MapRequestPayload] UrlDto $dto): JsonResponse
     {
-        //$path = $this->downloader->download(DriveId::fromUrl($dto->url));
+        $path = $this->downloader->download(DriveId::fromUrl($dto->url));
 
-        $meals = $this->parser->parse('/var/www/downloads/spreadsheet_1G9hY5HFgGmqjNqCGjOg1TJwPI8Q0_zF9.xlsx');
+        $this->parser->parse($path);
 
-        //$this->mealService->saveMany($meals);
+        //todo delete file?
 
         return new JsonResponse(Response::HTTP_CREATED);
     }
