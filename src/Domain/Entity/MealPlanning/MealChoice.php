@@ -50,7 +50,11 @@ class MealChoice
     {
         $additions = $this->additions->map(fn (MealAddition $addition) => $addition->getTitle());
 
-        return $this->meal->getTitle() . ' (' . implode(', ', $additions->toArray()) . ')';
+        if (!$additions->isEmpty()) {
+            $additionTitles = ' (' . implode(', ', $additions->toArray()) . ')';
+        }
+
+        return $this->meal->getTitle() . ($additionTitles ?? '');
     }
 
     public function getUser(): User
