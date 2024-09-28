@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <div class="login-container">
+        <h1 class="page-title">Кто ты воин?</h1>
+
+        <!-- User Cards -->
+        <div class="user-cards">
+            {% for user in users %}
+                <!-- Each user displayed as a clickable card -->
+                <div class="user-card" data-user-id="{{ user.id }}" data-username="{{ user.fullName }}" onclick="loginAsUser('{{ user.id }}')">
+                    <h3>{{ user.fullName }}</h3>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Hidden login form to submit user ID -->
+        <form method="post" id="login-form">
+            <input type="hidden" name="_username" id="username" class="form-control" required>
+            <button type="submit" style="display:none;"></button>
+        </form>
+    </div>
+
+    <script>
+        // Function to set the user ID and submit the form when a user card is clicked
+        function loginAsUser(userId) {
+            document.getElementById('username').value = userId;
+            document.getElementById('login-form').submit();
+        }
+    </script>
+
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+        }
+
+        /* Container for the login section */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 100vh; /* Full viewport height */
+            text-align: center;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 2.5rem;
+            color: #334e68;
+            margin-bottom: 40px;
+        }
+
+        /* User cards */
+        .user-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between cards */
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Style for each user card */
+        .user-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%; /* Full width */
+        }
+
+        .user-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background-color: #f0f4f8; /* Light background on hover */
+        }
+
+        .user-card h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #243b53; /* Consistent text color */
+            font-weight: 500;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .user-card {
+                padding: 15px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+{% endblock %}

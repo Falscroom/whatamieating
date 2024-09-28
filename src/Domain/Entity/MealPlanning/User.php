@@ -10,11 +10,12 @@ use App\Domain\Shared\ValueObject\Date;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_user')]
-class User extends AggregateRoot implements UserInterface
+class User extends AggregateRoot implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -55,16 +56,18 @@ class User extends AggregateRoot implements UserInterface
 
     public function getRoles(): array
     {
-        // TODO: Implement getRoles() method.
+        return ['ROLE_USER'];
     }
 
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
+    public function eraseCredentials(): void {}
 
     public function getUserIdentifier(): string
     {
         return (string) $this->id;
+    }
+
+    public function getPassword(): ?string
+    {
+        return null;
     }
 }

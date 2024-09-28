@@ -20,7 +20,7 @@ final readonly class MealService
 
     public function getMealChoices(User $user, Date $date): MealChoiceListDto
     {
-        $mealChoices = $this->repository->getMealChoices(4, $date);
+        $mealChoices = $this->repository->getMealChoices($user->getId(), $date);
         $mappedByType = MappedArray::objectArrayWithEnums($mealChoices, 'getMealType');
 
         $sortedMealChoicesDto = [];

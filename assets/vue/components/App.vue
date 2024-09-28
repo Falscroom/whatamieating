@@ -1,18 +1,24 @@
 <template>
   <div class="meal-container">
+    <!-- Logout Button -->
+    <button class="logout-button" @click="logout">Logout</button>
+
     <!-- User's full name and date -->
     <div class="header">
       <h2>{{ mealsData.userFullName }}</h2>
       <h3>{{ mealsData.date }}</h3>
     </div>
 
-    <!-- Loop through meal types (breakfast, lunch) -->
-    <div v-for="meal in mealsData.mealChoices" :key="meal.type" class="meal-type">
+    <!-- Meal Choices -->
+    <div
+        v-for="meal in mealsData.mealChoices"
+        :key="meal.type"
+        class="meal-type"
+    >
       <h2>{{ meal.type }}</h2>
-
-      <!-- Loop through meal choices -->
       <ul>
         <li v-for="choice in meal.choices" :key="choice.title">
+          <span class="meal-icon">🍽️</span>
           {{ choice.title }}
         </li>
       </ul>
@@ -20,102 +26,134 @@
   </div>
 </template>
 
+
 <script>
 export default {
   data() {
     return {
-      mealsData: [] // Initialize empty
+      mealsData: [],
     };
   },
   mounted() {
-    // Load mealChoices from the global window object
+    // Load mealsData from the global window object
     if (window.mealsData) {
       this.mealsData = window.mealsData;
-
-      console.log(this.mealsData);
     }
-  }
+  },
+  methods: {
+    logout() {
+      // Redirect to the logout route
+      window.location.href = '/logout';
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* Container for the entire meal section */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+/* Meal Container */
 .meal-container {
+  position: relative; /* Added to position the logout button within this container */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh; /* Full viewport height */
-  background-color: #f4f6f8;
   padding: 20px;
-  text-align: center;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+  min-height: 100vh;
 }
 
-/* Header section with user info */
+/* Logout Button Styles */
+.logout-button {
+  position: absolute; /* Positioned relative to .meal-container */
+  top: 20px;
+  right: 20px;
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #ee5253;
+}
+
+/* Header Styles */
 .header {
-  margin-bottom: 40px;
+  text-align: center;
+  margin-top: 60px; /* Added margin-top to prevent overlap with the logout button */
+  margin-bottom: 30px;
 }
 
 .header h2 {
-  font-size: 2rem;
-  color: #42b983;
+  font-size: 2.2rem;
+  color: #334e68;
   margin: 0;
 }
 
 .header h3 {
   font-size: 1.2rem;
-  color: #888;
-  margin: 5px 0;
+  color: #829ab1;
+  margin-top: 5px;
 }
 
-/* Style each meal type section */
+/* Meal Type Section Styles */
 .meal-type {
-  margin-bottom: 40px;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
+  margin-bottom: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Subheading for meal types */
-.meal-type h2 {
-  font-size: 1.8rem;
-  color: #34495e;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* Meal choices list */
+/* Meal Choices List Styles */
 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
   font-size: 1.1rem;
-  color: #333;
-  background-color: #ffffff;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: #334e68;
+  background-color: #f0f4f8;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 li:hover {
-  background-color: #f0fbf7;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #d9e2ec;
+  transform: translateY(-3px);
 }
 
-/* Responsive behavior */
+/* Meal Icon Styles */
+.meal-icon {
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .meal-type {
     max-width: 90%;
+    padding: 15px 20px;
   }
 
   li {
     font-size: 1rem;
-    padding: 12px;
+    padding: 10px 14px;
   }
 }
 </style>

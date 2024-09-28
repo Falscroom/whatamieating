@@ -10,6 +10,7 @@ use App\Domain\Shared\ValueObject\Date;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 #[Route('/api/meal')]
 final class MealController extends AbstractController
@@ -17,9 +18,8 @@ final class MealController extends AbstractController
     public function __construct(private readonly MealService $mealService) {}
 
     #[Route('/whatAmIEating', methods: ['GET'])]
-    public function whatAmIEating(): Response
+    public function whatAmIEating(#[CurrentUser] User $user): Response
     {
-        $user = new User('Ivan Ivanov');
         $mealChoices = $this->mealService->getMealChoices($user, Date::today());
 
         return $this->render('vue/index.html.twig', [
