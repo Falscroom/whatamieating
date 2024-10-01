@@ -8,7 +8,7 @@ use App\Domain\Entity\MealPlanning\Meal;
 use App\Domain\Entity\MealPlanning\MealAddition;
 use App\Domain\Entity\MealPlanning\User;
 use App\Domain\Enum\MealType;
-use App\Domain\Shared\Entity\MappedArray;
+use App\Domain\Shared\Utils\MappedArray;
 use App\Domain\Shared\ValueObject\Date;
 use App\Persistence\Repository\MealAdditionRepository;
 use App\Persistence\Repository\MealRepository;

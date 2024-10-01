@@ -17,7 +17,7 @@ final class MealController extends AbstractController
 {
     public function __construct(private readonly MealService $mealService) {}
 
-    #[Route('/whatAmIEating', methods: ['GET'])]
+    #[Route('/whatamieating', methods: ['GET'])]
     public function whatAmIEating(#[CurrentUser] User $user): Response
     {
         $mealChoices = $this->mealService->getMealChoices($user, Date::today());

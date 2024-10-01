@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Shared\Entity;
-
-use InvalidArgumentException;
+namespace App\Domain\Shared\Utils;
 
 final readonly class GroupedArray
 {

@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Shared\Entity;
-
-use InvalidArgumentException;
+namespace App\Domain\Shared\Utils;
 
 final class MappedArray
 {
@@ -20,7 +18,7 @@ final class MappedArray
         return new self($data);
     }
 
-    public function get(int|string $key): ?object
+    public function get(int|string $key): mixed
     {
         return $this->data[$key] ?? null;
     }

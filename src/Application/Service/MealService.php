@@ -10,7 +10,7 @@ use App\Application\Dto\MealPlanning\MealChoice\MealChoicesGroupedDto;
 use App\Domain\Entity\MealPlanning\MealChoice;
 use App\Domain\Entity\MealPlanning\User;
 use App\Domain\Enum\MealType;
-use App\Domain\Shared\Entity\GroupedArray;
+use App\Domain\Shared\Utils\GroupedArray;
 use App\Domain\Shared\ValueObject\Date;
 use App\Persistence\Repository\MealChoiceRepository;
 
