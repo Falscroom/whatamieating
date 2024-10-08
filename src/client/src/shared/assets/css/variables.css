@@ -1,0 +1,18 @@
+:root {
+    --gutter: 8px;
+    --border-radius: 8px;
+
+    --slate-200: var(--p-slate-200);
+}
+
+@media (min-width: 475px) {
+    :root {
+        --gutter: 9.5px;
+    }
+}
+@media (min-width: 1024px) {
+    :root {
+        --gutter: 10px;
+        --border-radius: 3px;
+    }
+}

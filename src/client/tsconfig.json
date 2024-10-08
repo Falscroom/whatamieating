@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                        // Компилировать в современный JavaScript
+    "module": "ESNext",                        // Использовать ESNext модули
+    "moduleResolution": "node",                // Разрешение модулей через node_modules
+    "strict": true,                            // Включить строгий режим для TypeScript
+    "jsx": "preserve",                         // JSX поддержка, если нужна для Vue
+    "esModuleInterop": true,                   // Включить совместимость ES модулей
+    "allowSyntheticDefaultImports": true,      // Разрешить импорт по умолчанию для модулей CommonJS
+    "forceConsistentCasingInFileNames": true,  // Проверка чувствительности к регистру в именах файлов
+    "skipLibCheck": true,                      // Пропустить проверку библиотек (ускоряет сборку)
+    "sourceMap": true,                         // Генерация source maps для отладки
+    "baseUrl": ".",                            // Базовая директория проекта
+    "paths": {
+      "@/*": ["src/*"],           // Общий алиас для корня src
+      "@domain/*": ["src/domain/*"],        // Для доменного слоя
+      "@application/*": ["src/application/*"], // Для слоя приложений
+      "@infrastructure/*": ["src/infrastructure/*"], // Для инфраструктуры
+      "@interfaces/*": ["src/interfaces/*"],  // Для интерфейсов и UI
+      "@shared/*": ["src/shared/*"]   // Для общих утилит и констант
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"                             // Включить файлы Vue для компиляции
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
