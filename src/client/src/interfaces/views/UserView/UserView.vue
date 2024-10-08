@@ -27,6 +27,7 @@
     justify-content: center;
     margin-bottom: calc(var(--gutter) * 2);
     margin-top: var(--gutter);
+    color: var(--base-clr);
 }
 
 .login-page__users {

@@ -5,7 +5,7 @@ import {User} from '@shared/interface';
 export const useFetchUsers = async (): Promise<User[]> => {
     const {baseUrl} = useBaseApiUrl();
 
-    const data = ref<User[]>([]);
+    const data = ref<User[]>();
 
     await fetch(`${baseUrl}/users`)
         .then((res) => res.json())

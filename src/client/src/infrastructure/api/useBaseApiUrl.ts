@@ -1,9 +1,8 @@
 export const useBaseApiUrl = () => {
     // @todo перенести в env
-    const baseUrl = 'https://freetestapi.com/api';
-    const apiVersion = 'v1';
+    const baseUrl = 'https://jsonplaceholder.typicode.com';
 
-    const url = `${baseUrl}/${apiVersion}`;
+    const url = `${baseUrl}`;
 
     return {
         baseUrl: url,

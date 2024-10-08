@@ -1,12 +1,29 @@
+interface Geo {
+    lat: string;
+    lng: string;
+}
+
+interface Address {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: Geo;
+}
+
+interface Company {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+}
+
 export interface User {
-    id: number
-    name: string
-    birth_year: number
-    death_year: number
-    nationality: string
-    genre: []
-    notable_works: []
-    award: string
-    biography: string
-    image: string
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    address: Address;
+    phone: string;
+    website: string;
+    company: Company;
 }

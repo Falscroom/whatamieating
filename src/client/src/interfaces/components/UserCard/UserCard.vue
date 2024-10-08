@@ -18,5 +18,7 @@
     padding: calc(var(--gutter) * 2) calc(var(--gutter) * 3);
     background-color: var(--slate-200);
     border-radius: var(--border-radius);
+    color: var(--base-clr);
+    text-decoration: none;
 }
 </style>
